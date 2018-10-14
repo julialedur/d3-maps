@@ -1052,4 +1052,4 @@ parcelRequire=function(e,r,n,t){var i="function"==typeof parcelRequire&&parcelRe
 },{"topojson-client":"+0Aj","topojson-server":"p5nm","topojson-simplify":"J/5d"}],"qy83":[function(require,module,exports) {
 "use strict";var t=require("d3"),r=i(t),e=require("topojson"),o=i(e);function i(t){if(t&&t.__esModule)return t;var r={};if(null!=t)for(var e in t)Object.prototype.hasOwnProperty.call(t,e)&&(r[e]=t[e]);return r.default=t,r}var l={top:0,left:0,right:0,bottom:0},u=300-l.top-l.bottom,a=330-l.left-l.right,n=r.select("#chart-6");
 },{"d3":"UzF0","topojson":"Ftz0"}]},{},["qy83"], null)
-//# sourceMappingURL=/change-me-to-match-your-repo/06-map.e6cde7e2.map
+//# sourceMappingURL=/d3-maps/06-map.e6cde7e2.map
