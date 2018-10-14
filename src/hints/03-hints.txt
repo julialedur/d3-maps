@@ -1,0 +1,80 @@
+Use https://github.com/jsoma/hexagon-grids-for-adobe-illustrator - it comes with instructions!
+
+
+
+
+
+
+
+
+YOURS DOESN'T HAVE TO LOOK LIKE MINE. Not in terms of style, color, labels, etc etc etc. Just want some sort of hex map that might plausibly be canada.
+
+(And yeah, I have weird black lines in various places because apparently the hexagons have like 0.00001 pixels between them. Haven't quite debugged that yet.)
+
+
+
+
+
+
+
+
+You'll want to start by making a new 700x500 artboard in Illustrator and placing a map of Canada down.
+
+Do the hex thing
+
+Trace some, press v, select a fill color
+Trace some more, press v, select a fill color
+Repeat until you've done it for all of them
+
+Use Select > Same > Appearance to select all of the red ones and delete them
+Use Select > Same > Appearance tool to select ones that are the same color, them command+g to group them
+
+Now that you've named them, delete the image you used for tracing
+
+Each of them should now be in a group! Now follow the instructions about renaming them, making sure they match a column in the csv.
+
+You'll probably want to just cut and paste the code from the example in /docs/ (the code is in index.html), although you'll need to fix it up a bit to make it match the page and our fancy style of writing JavaScript.
+
+If you want the fancy outlines and labels, you'll need to install turf and polylabel. It's easy enough, just
+
+    npm install @turf/turf
+    npm install polylabel
+
+and import them like
+
+    import * as turf from '@turf/turf'
+    import polylabel from 'polylabel'
+
+
+(I spent like half an hour debugging npm install turf because I ignored npm install error messages that told me to do @turf/turf)
+
+    "Why do we import polylabel in such a nice way"
+    "It's just.... it's just future JavaScript, it's just the terrible world we live in"
+
+
+
+
+
+
+
+Try
+
+     .style('text-shadow', 'black 1px 1px 1px')
+
+to make your labels stand out
+
+
+
+
+
+
+
+
+
+
+
+
+Want to do the same thing I did with the outline around EVERYTHING but also the other outline? turf.union is used to join together polygons - I use it to join together all of the hexagons to make each province - so I also used it to join together each province into one big shape, and then drew that.
+
+
+

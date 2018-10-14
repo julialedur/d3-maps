@@ -1,0 +1,133 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <style>
+      svg { 
+        display: block;
+        margin: 0 auto;
+      }
+
+      h1 { margin-bottom: 2rem; }
+
+      body {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+      }
+
+      h3 { 
+        margin-top: 3rem; 
+        margin-bottom: 1rem;
+      }
+
+      .container {
+        max-width: 66rem;
+      }
+
+      img.block {
+        display: block;
+        border: solid #333 1p;
+        margin: 0 auto;
+      }
+
+      .sphere {
+        fill: none;
+        stroke: #000;
+        stroke-width: 3px;
+      }
+
+/*      .fill {
+        fill: #fff;
+      }
+*/
+      .graticule {
+        fill: none;
+        stroke: #777;
+        stroke-width: .5px;
+        stroke-opacity: .5;
+      }
+
+      h3 small {
+        background: #fff880;
+      }
+
+      #chart-6 svg {
+        display: inline;
+      }
+
+    </style>
+  </head>
+</head>
+<body>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h1>M A P P I N G</h1>
+
+      <div class="alert alert-warning"><strong>Same as ever:</strong> homework should look like <a href="homework-completed.pdf">homework-completed.pdf</a>, hints are in <code>hints</code>, blah blah blah.</div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+
+      <h3>Chart 1: A map about dots <small>easy</small></h3>
+      <p>
+        Do you like <a href="https://www.reddit.com/r/outrun/">/r/outrun</a>? Do you like <a href="https://ironskullet.com/2018/03/01/what-is-synthwave-2018-edition/">synthwave</a>? Cool, let's make a map like that.</p>
+        <p>Data is in <code>world.topojson</code> and <code>world-cities.csv</code></p>
+      </p>
+      <div id="chart-1">
+      </div>
+
+      <h3>Chart 2: Points and lines <small>difficult</small></h3>
+      <p>Which airports can you <a href="http://nonstopfrom.com/new-york-jfk/">fly non-stop to</a> out of JFK? Let's plot the airports, and draw lines for the flights. We're going to use the <code>geoEqualEarth</code> projection.</p>
+      <p>Data is in <code>world.topojson</code>, <code>flights.csv</code>, and <code>airport-codes-subset.csv</code>. You'll need to build <code>flights.csv</code>.</p>
+      <div id="chart-2">
+      </div>
+
+      <h3>Chart 3: Hex maps <small>moderate</small></h3>
+      <p>Use <a href="">this tool</a> to build a map. It comes with instructions <strong>and</strong> code!</p>
+      <p>Data is in <code>wolves.csv</code> and you'll need to create <code>canada.svg</code></p>
+      <div id="chart-3">
+      </div>
+
+      <h3>Chart 4: An election choropleth <small>easy</small></h3>
+      <p>Because hey hey choropleths hey hey! Make the color related to who was voted for, then make the opacity related to how many people are in that county (<a href="http://andywoodruff.com/blog/value-by-alpha-maps/">see this</a>). Compare the map where you use opacity to the map where you don't. Be amazed!</p>
+      <p>For the 2016 election I'm missing data for Maine - you can use <code>counties.topojson</code> for 2012 or <code>counties_with_election_data.topojson</code> for 2016 (sans Maine). Want to learn about how to pick colors well? <a href="https://blog.datawrapper.de/choroplethmaps/">read this</a>.</p>
+      <p>Data is in <code>counties.topojson</code> or <code>counties_with_election_data.topojson</code>, depending on which election you want to work with.</p>
+      <div id="chart-4a">
+      </div>
+
+      <h3>Chart 4: An election choropleth <small>easy</small></h3>
+      <p>Make the same thing, but instead of using <code>colorScale</code> for Republicans vs. Democrats, just make it 100% one color if Republicans won and 100% another color if Democrats won. Compare with <strong>4a</strong> and think about how your color scale kind of screwed up with color-by-alpha thing.</p>
+      <div id="chart-4b">
+      </div>
+
+      <h3>Chart 5: A bubble map <small>easy... to a point.</small></h3>
+      <p>Make a map of all of the powerplants in the United States. Size the circles by their output, color them by the type of powerplant. We're just copying <a href='https://www.washingtonpost.com/graphics/national/power-plants'>this</a>, really.</p>
+      <p>Include a legend.</p>
+      <p>Data is in <code>us_states.topojson</code> and <code>powerplants.csv</code></p>
+      <div id="chart-5">
+      </div>
+
+      <h3>Chart 6: Small multiple maps <small>?????</small></h3>
+      <p>Hey wait, that <a href='https://www.washingtonpost.com/graphics/national/power-plants'>Washington Post thing</a> had small multiples, didn't it? Let's do that, too.</p>
+      <p>Data is in <code>us_states.topojson</code> and <code>powerplants.csv</code>, because it's the SAME.</p>
+      <div id="chart-6">
+      </div>
+
+    </div>
+  </div>
+
+  <script src="01-map.js"></script>
+  <script src="02-map.js"></script>
+  <script src="03-map.js"></script>
+
+  <script src="04a-map.js"></script>
+  <script src="04b-map.js"></script>
+  <script src="05-map.js"></script>
+  <script src="06-map.js"></script>
+</div>
+</body>
+</html>

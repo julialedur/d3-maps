@@ -1,0 +1,80 @@
+Copy and paste from Map 5! But change the size and the margins and the whole like uh svg append part.
+
+
+
+
+
+
+
+
+
+
+
+
+Just like any other small multiple, the VERY FIRST THING you need to do is N-E-S-T your data!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Then you can add an svg for each and draw inside.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+You'll definitely want to auto-fit your projection. If 'states' is your thing that has .features in it, you'll do this:
+
+    projection.fitSize([width, height], states)
+
+
+
+
+
+
+
+
+
+
+
+
+To capitalize, you'll want to look at the end of the last hints file. It won't be exactly the same since `d` isn't the name of your power source, but it'll be close!
+
+
+
+
+
+
+
+
+
+
+
+
+If you can't see your text, make sure it isn't below your other layers!
+
+
+
+
+
+

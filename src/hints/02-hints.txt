@@ -1,0 +1,274 @@
+
+
+
+
+
+
+
+Build a CSV named flights.csv from http://nonstopfrom.com/new-york-jfk/ with the column names 'airport,code,airlines'
+
+
+
+
+
+
+
+
+
+
+
+
+
+Use your text editor + regular expressions
+
+
+
+
+
+
+
+
+
+
+
+Okay, okay, fine, this is a viz class, I guess?
+
+1. Open up the page
+2. Select everything under the "International non stop flights from New York may fly to:" heading
+3. Copy and paste into a new file
+4. Find and Replace. Search for: `(.*) – (.*) – (.*)` and replace with `"\1","\2","\3"` (but without the backticks - that's just for markdown to not freak out)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+You can cut and paste almost all of the first file, just change the projection and read in flights instead of lines
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+To give the globe a background color or a stroke, you need to add the globe itself as a geojson layer. Fortunately the globe is just
+
+    { type: 'Sphere' }
+
+Which means you can add it in one simple statement!
+
+    svg.append('path')  
+      .datum({type: 'Sphere'})
+      .attr('d', path)
+
+You can also use this for any other projection, too, even if it isn't a 3d globe.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+You can use numbers smaller than 1 for stroke-width
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Spin the globe to face new york by using .rotate with the projection.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Instead of giving .rotate the longitude and latitude, you actually need to give it the negatives of the numbers!
+
+
+
+
+
+
+
+
+
+
+
+If you'd like to do this on your own at some point for some other city, here's what I did to get the lat/lon codes...
+
+Step 1: Download a 6mb airport codes file from https://github.com/datasets/airport-codes/blob/master/data/airport-codes.csv
+Step 2: Run some code
+
+    # Read in our files
+    flights = pd.read_csv("flights.csv")
+    codes = pd.read_csv("airport-codes.csv")
+
+    # Create lat/lon columns
+    codes[['longitude', 'latitude']] = codes.coordinates.str.extract('(.*), (.*)')
+    codes.drop(columns=['coordinates'], inplace=True)
+
+    # Keep the ones for our flights
+    subset = codes[codes.iata_code.isin(flights.code)]
+
+    # Clean up closed and duplicated airports
+    subset = subset[subset.type != 'closed']
+    subset.drop_duplicates(subset='iata_code', inplace=True)
+
+    # Save
+    subset.to_csv("airport-codes-subset.csv", index=False)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Draw your airports first - you'll want to use transform/translate to move your circles around
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+How do you convert lat/lon to pixel coordinates?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+As always, be careful with your column names for latitude and longitude
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+When you're drawing your flight paths, you'll need to build some custom geojson. It looks like this:
+
+
+    {
+      type: 'LineString',
+      coordinates: [[lng1, lat1], [lng2, lat2]]
+    }
+
+
+
+
+
+
+
+
+
+
+
+To ge tthe lat/lon of the destination airports, you'll need to use a d3.map() - we called ours CoordinateStore when we did it in class, you'll probably do just about the exact same thing!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+If your mapping isn't working right, take a look at the coordinates you're storing. Did you pick the right column names? Are you putting them in the right order?

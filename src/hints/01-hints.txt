@@ -1,0 +1,103 @@
+You'll need to read in TWO files, the world file and the cities file.
+
+
+
+
+
+
+
+
+
+
+
+
+So you need to change both the part where you read in the data AND the ready function
+
+
+
+
+
+
+
+
+
+
+Remember, one is json and one is a csv!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+The background goes on the svg, as .style and not .attr
+
+**NOT** the g, it won't work! You could also draw a black rectangle across the back of the map, though, if you wanted to leave the svg untouched.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+When you're making your scale, instead of using a scaleLinear() you can use a scaleSequential! It's basically the same thing, except you give it one of these color scales instead of a range: https://github.com/d3/d3-scale-chromatic
+
+For example, if you previously had
+
+    colorScale = d3.scaleLinear().domain([0, 100]).range(['white', 'red'])
+
+Instead you'd get rid of the .range part and feed it one of the scale interpolators
+
+    colorScale = d3.scaleSequential(d3.interpolateReds).domain([0, 100])
+
+What's an interpolator? Just a fancy way of saying "how to transition from your first color to your second color" (or to a third, fourth, fifth, or sixth color! Check out d3.interpolateRainbow)
+
+
+
+
+
+
+
+Experiment with adding .clamp(true) onto your scale. What changes?
+
+
+
+
+
+pay attention to your column names when you're using the coordinates for your cities!
+
+
+
+
+
+
+
+
+
+
+
+
+Let's get some cool fonts in there! Use fonts.google.com
+
+<link href="https://fonts.googleapis.com/css?family=Monoton|Orbitron" rel="stylesheet">
+
+
