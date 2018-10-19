@@ -7,7 +7,7 @@ let height = 500 - margin.top - margin.bottom
 
 let width = 900 - margin.left - margin.right
 
-// add svg 
+// add svg
 
 let svg = d3
   .select('#chart-1')
@@ -17,39 +17,37 @@ let svg = d3
   .append('g')
   .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
 
-// set projections 
+// set projections
 
 let projection = d3.geoMercator()
 let graticule = d3.geoGraticule()
 
 let path = d3.geoPath().projection(projection)
 
-// scales 
+// scales
 
 let colorScale = d3
   .scaleSequential(d3.interpolateCool)
   .domain([0, 600000])
   .clamp(true)
-  
-// read in data 
 
-  Promise.all([
-    d3.json(require('./data/world.topojson')),
-    d3.csv(require('./data/world-cities.csv'))
-  ])
+// read in data
+
+Promise.all([
+  d3.json(require('./data/world.topojson')),
+  d3.csv(require('./data/world-cities.csv'))
+])
 
   .then(ready)
   .catch(err => console.log('Failed on', err))
 
-
 function ready([json, datapoints]) {
+  // console.log(json.objects)
+  // console.log(cities)
 
-// console.log(json.objects)
-// console.log(cities)
+  let countries = topojson.feature(json, json.objects.countries)
 
-let countries = topojson.feature(json, json.objects.countries)
-
-// add map
+  // add map
 
   svg
     .selectAll('.country')
@@ -61,8 +59,7 @@ let countries = topojson.feature(json, json.objects.countries)
     .attr('fill', 'black')
     .attr('stroke', 'black')
 
-
-// add grid 
+  // add grid
 
   svg
     .append('path')
@@ -72,7 +69,7 @@ let countries = topojson.feature(json, json.objects.countries)
     .attr('fill', 'none')
     .lower()
 
-// add black background 
+  // add black background
 
   svg
     .append('rect')
@@ -81,7 +78,7 @@ let countries = topojson.feature(json, json.objects.countries)
     .attr('fill', 'black')
     .lower()
 
-// add cities (circles)
+  // add cities (circles)
 
   svg
     .selectAll('.cities')
@@ -92,9 +89,8 @@ let countries = topojson.feature(json, json.objects.countries)
     .attr('r', 1)
     .attr('fill', d => colorScale(d.population))
     .attr('transform', d => {
-      //console.log(d)
-     let coords = projection([d.lng, d.lat])
-     return `translate(${coords})`
+      // console.log(d)
+      let coords = projection([d.lng, d.lat])
+      return `translate(${coords})`
     })
-
-  }
+}
